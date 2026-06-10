@@ -1,4 +1,4 @@
-using System.Security.Criptography;
+using System.Security.Cryptography;
 
 namespace GeradorEmail;
 
