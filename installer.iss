@@ -16,7 +16,6 @@ SetupIconFile=icone.ico
 
 [Files]
 Source: "publish\GeradorEmail.exe"; DestDir: "{app}"
-Source: "config.json"; DestDir: "{app}"
 
 [Icons]
 Name: "{group}\Gerador de E-mail"; Filename: "{app}\GeradorEmail.exe"

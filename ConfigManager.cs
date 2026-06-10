@@ -9,12 +9,26 @@ public class AppConfig
 
 public static class ConfigManager
 {
-    private static readonly string ConfigPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.json");
+
+    private static readonly string ConfigDirectory =
+    Path.Combine(
+        Environment.GetFolderPath(
+            Environment.SpecialFolder.ApplicationData),
+        "GeradorEmail");
+    private static readonly string ConfigPath =
+    Path.Combine(
+        ConfigDirectory,
+        "config.json");
 
     public static AppConfig Load()
     {
         try
         {
+            if (!Directory.Exists(ConfigDirectory))
+            {
+                Directory.CreateDirectory(ConfigDirectory);
+            }
+
             if (!File.Exists(ConfigPath))
             {
                 var config = new AppConfig();
@@ -36,7 +50,15 @@ public static class ConfigManager
 
     public static void Save(AppConfig config)
     {
-        string json = JsonSerializer.Serialize(config, new JsonSerializerOptions { WriteIndented = true });
+        Directory.CreateDirectory(ConfigDirectory);
+
+        string json =
+            JsonSerializer.Serialize(
+                config,
+                new JsonSerializerOptions
+                {
+                    WriteIndented = true
+                });
 
         File.WriteAllText(ConfigPath, json);
     }
