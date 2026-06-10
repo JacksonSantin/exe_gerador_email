@@ -44,7 +44,7 @@ public partial class Form1 : Form
         lblStatus.Text = "✓ Copiado para a área de transferência";
     }
 
-    private void btnSalvar_CLick(object sender, EventArgs e) 
+    private void btnSalvar_Click(object sender, EventArgs e) 
     {
         _config.Domain = txtDomain.Text.Trim();
 
